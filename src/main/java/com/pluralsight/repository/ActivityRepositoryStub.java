@@ -15,6 +15,7 @@ public class ActivityRepositoryStub implements ActivityRepository {
 	public List<Activity> findAllActivities(){
 		List<Activity> activities = new ArrayList<Activity>();
 		
+		// Usually a database query here
 		Activity activity1 = new Activity();
 		
 		activity1.setDescription("Swimming");
@@ -48,5 +49,11 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		activity1.setUser(user);
 		
 		return activity1;
+	}
+
+	@Override
+	public void create(Activity activity) {
+		// Usually writing to the database here
+		
 	}
 }
