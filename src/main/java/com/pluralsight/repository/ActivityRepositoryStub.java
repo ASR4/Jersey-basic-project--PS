@@ -53,7 +53,16 @@ public class ActivityRepositoryStub implements ActivityRepository {
 
 	@Override
 	public void create(Activity activity) {
-		// Usually writing to the database here
+		//Usually writing to the database here
 		
+	}
+
+	@Override
+	public Activity update(Activity activity) {
+		//search the data base to see if we have activity with that id and Usually updating it to the database here
+		//select * from Activity table
+		//else
+		//update the Activity
+		return activity;
 	}
 }

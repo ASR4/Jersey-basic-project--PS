@@ -63,4 +63,16 @@ public class ActivityClient {
 		
 		return response.readEntity(Activity.class);
 	}
+
+	public Activity update(Activity activity) {
+		WebTarget target = client.target("http://localhost:9090/exercise-services/webapi/");
+		
+		Response response = target.path("activities/" + activity.getId()).request().put(Entity.entity(activity, MediaType.APPLICATION_JSON));
+		
+		if(response.getStatus() != 200){
+			throw new RuntimeException(response.getStatus() + " : there was an error on the server side ");
+		}
+		
+		return response.readEntity(Activity.class);
+	}
 }
