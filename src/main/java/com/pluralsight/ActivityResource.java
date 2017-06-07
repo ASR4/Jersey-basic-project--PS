@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.pluralsight.model.Activity;
 import com.pluralsight.model.User;
@@ -55,12 +57,32 @@ public class ActivityResource {
 		return activityRepository.findAllActivities();
 	}
 	
+//	@GET
+//	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+//	@Path("{activityId}")//http:localhost:9090/exercise-services/webapi/activities/1234
+//	public Activity getActivity(@PathParam("activityId") String activityId){
+//		return activityRepository.findActivity(activityId);
+//	}
+	
+	
+	//Example of error handlingin jersey
 	@GET
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Path("{activityId}")//http:localhost:9090/exercise-services/webapi/activities/1234
-	public Activity getActivity(@PathParam("activityId") String activityId){
-		return activityRepository.findActivity(activityId);
+	public Response getActivity(@PathParam("activityId") String activityId){
+		if(activityId == null || activityId.length() < 4){
+			return Response.status(Status.BAD_REQUEST).build();
+		}
+		
+		Activity activity = activityRepository.findActivity(activityId);
+		
+		if(activity == null){
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		
+		return  Response.ok().entity(activity).build();
 	}
+	
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
