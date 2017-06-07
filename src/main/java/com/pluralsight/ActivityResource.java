@@ -21,6 +21,16 @@ public class ActivityResource {
 	
 	private ActivityRepository activityRepository = new ActivityRepositoryStub();
 	
+	@POST
+	@Path("activity")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	public Activity createActivity(Activity activity){
+		
+		activityRepository.create(activity);
+		
+		return activity;
+	}
 	
 	@POST
 	@Path("activity")//http:localhost:9090/exercise-services/webapi/activities/activity
