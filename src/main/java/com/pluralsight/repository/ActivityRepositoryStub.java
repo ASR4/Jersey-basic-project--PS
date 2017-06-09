@@ -65,4 +65,25 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		//update the Activity
 		return activity;
 	}
+
+	@Override
+	public void delete(String activityId) {
+		//Delete from activity where activityid = 1234
+		
+	}
+
+	@Override
+	public List<Activity> findByDescription(List<String> descriptions) {
+		//Select * from activities where description in (?,?,?)
+		
+		List<Activity> activities = new ArrayList<Activity>();
+		
+		Activity activity = new Activity();
+		activity.setId("1234");
+		activity.setDescription("swimming");
+		activity.setDuration(55);
+		
+		activities.add(activity);
+		return activities;
+	}
 }
