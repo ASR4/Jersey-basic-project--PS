@@ -25,6 +25,7 @@ public class ActivitySearchClient {
 		
 		//http://localhost:8080/exercise-services/webapi/search/activities?description=swimming&description=running
 		
+		//Uri so that we can append query params in front of it
 		URI uri = UriBuilder.fromUri("http://localhost:9090/exercise-services/webapi")
 				.path("search/activities")
 				.queryParam(param, searchValues)
