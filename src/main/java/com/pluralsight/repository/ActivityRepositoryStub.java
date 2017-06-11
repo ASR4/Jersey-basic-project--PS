@@ -92,6 +92,7 @@ public class ActivityRepositoryStub implements ActivityRepository {
 	@Override
 	public List<Activity> findByContraints(ActivitySearch search) {
 		System.out.println(search.getDurationFrom());
+		System.out.println(search.getSearchType());
 		
 		List<Activity> activities = new ArrayList<Activity>();
 		
