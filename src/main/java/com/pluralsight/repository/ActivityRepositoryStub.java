@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pluralsight.model.Activity;
+import com.pluralsight.model.ActivitySearch;
 import com.pluralsight.model.User;
 
 public class ActivityRepositoryStub implements ActivityRepository {
@@ -73,8 +74,8 @@ public class ActivityRepositoryStub implements ActivityRepository {
 	}
 
 	@Override
-	public List<Activity> findByDescription(List<String> descriptions) {
-		//Select * from activities where description in (?,?,?)
+	public List<Activity> findByDescription(List<String> descriptions, int durationFrom, int durationTo) {
+		//Select * from activities where description in (?,?,?) and duration<?> and duration<?>
 		
 		List<Activity> activities = new ArrayList<Activity>();
 		
@@ -84,6 +85,23 @@ public class ActivityRepositoryStub implements ActivityRepository {
 		activity.setDuration(55);
 		
 		activities.add(activity);
+		
+		return activities;
+	}
+
+	@Override
+	public List<Activity> findByContraints(ActivitySearch search) {
+		System.out.println(search.getDurationFrom());
+		
+		List<Activity> activities = new ArrayList<Activity>();
+		
+		Activity activity = new Activity();
+		activity.setId("1234");
+		activity.setDescription("swimming");
+		activity.setDuration(55);
+		
+		activities.add(activity);
+		
 		return activities;
 	}
 }
